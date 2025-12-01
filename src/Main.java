@@ -1,24 +1,28 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.LinkedList;
 
 public class Main {
     void main(String[] args) {
-        ArrayList<String> list = new  ArrayList<>();
-        Scanner input = new Scanner(System.in);
-        list.add("Lorem");
-        list.add("ipsum");
-        list.add("dolor");
-        list.add("sit");
-        list.add("amet");
-        System.out.println("The list is: ");
-        list.forEach(System.out::println);
-        System.out.println("The sentence is: "+ concatenate(list));
-    }
-    static String concatenate(ArrayList<String> list){
-        String result = "";
-        for(int i = 0; i < list.size(); i++){
-            result += list.get(i)+" ";
+        ArrayList<Integer> list = new ArrayList<>();
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        for(int i = 0; i < 1000000; i++){
+            list.add((int)(Math.random()*100+1));
         }
-        return result;
+        for(int i = 0; i < 1000000; i++){
+            linkedList.add((int)(Math.random()*100+1));
+        }
+        long start = System.currentTimeMillis();
+        for(int i = 0; i < 10000; i++){
+            list.get((int)(Math.random()*1000000+1));
+        }
+        long stop = System.currentTimeMillis();
+        for(int i = 0; i < 10000; i++){
+            linkedList.get((int)(Math.random()*1000000+1));
+        }
+        long end = System.currentTimeMillis();
+        long listTime = stop - start;
+        long linkedListTime = end - stop;
+        System.out.println("The time for ArrayList: " + listTime + "ms");
+        System.out.println("The time for LinkedList: " + linkedListTime + "ms");
     }
 }
