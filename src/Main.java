@@ -1,28 +1,18 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class Main {
     void main(String[] args) {
-        ArrayList<Integer> list = new ArrayList<>();
-        LinkedList<Integer> linkedList = new LinkedList<>();
-        for(int i = 0; i < 1000000; i++){
-            list.add((int)(Math.random()*100+1));
+        System.out.println("13 is prime: "+isPrime(13));
+        System.out.println("15 is prime: "+isPrime(15));
+        System.out.println("19 is prime: "+isPrime(19));
+        System.out.println("23 is prime: "+isPrime(23));
+        System.out.println("24 is prime: "+isPrime(24));
+    }
+    boolean isPrime(int number) {
+        for (int i = 2; i < Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
         }
-        for(int i = 0; i < 1000000; i++){
-            linkedList.add((int)(Math.random()*100+1));
-        }
-        long start = System.currentTimeMillis();
-        for(int i = 0; i < 10000; i++){
-            list.set((int)(Math.random()*1000000+1), (int)(Math.random()*100+1));
-        }
-        long stop = System.currentTimeMillis();
-        for(int i = 0; i < 10000; i++){
-            linkedList.set((int)(Math.random()*1000000+1), (int)(Math.random()*100+1));
-        }
-        long end = System.currentTimeMillis();
-        long listTime = stop - start;
-        long linkedListTime = end - stop;
-        System.out.println("The time for ArrayList: " + listTime + "ms");
-        System.out.println("The time for LinkedList: " + linkedListTime + "ms");
+        return true;
     }
 }
