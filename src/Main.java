@@ -1,21 +1,20 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Main {
-    void main(String[] args) {
-        String sentence = "Lorem ipsum dolor sit amet, consectetur adipiscing elit";
-        System.out.println(sentence);
-        System.out.println("The number of vowels in the sentence: "+countVowels(sentence));
-    }
-    int countVowels(String str) {
-        int vowels = 0;
-        for(int i = 0; i < str.length(); i++) { //in English y is not considered a vowel
-            if(str.charAt(i)=='a'||str.charAt(i)=='e'||str.charAt(i)=='i'
-                    ||str.charAt(i)=='o' ||str.charAt(i)=='u'||
-            str.charAt(i)=='A'||str.charAt(i)=='E'||str.charAt(i)=='I'
-                    ||str.charAt(i)=='O'||str.charAt(i)=='U') {
-                vowels++;
-            }
 
+    void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>();
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        for (int i = 0; i < 1000000; i++) {
+            list.add((int) (Math.random() * 100 + 1));
         }
-        return vowels;
+        for (int i = 0; i < 1000000; i++) {
+            linkedList.add((int) (Math.random() * 100 + 1));
+        }
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            list.remove(i);
+        }
     }
 }
