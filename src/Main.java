@@ -1,18 +1,21 @@
 
 public class Main {
     void main(String[] args) {
-        System.out.println("13 is prime: "+isPrime(13));
-        System.out.println("15 is prime: "+isPrime(15));
-        System.out.println("19 is prime: "+isPrime(19));
-        System.out.println("23 is prime: "+isPrime(23));
-        System.out.println("24 is prime: "+isPrime(24));
+        String sentence = "Lorem ipsum dolor sit amet, consectetur adipiscing elit";
+        System.out.println(sentence);
+        System.out.println("The number of vowels in the sentence: "+countVowels(sentence));
     }
-    boolean isPrime(int number) {
-        for (int i = 2; i < Math.sqrt(number); i++) {
-            if (number % i == 0) {
-                return false;
+    int countVowels(String str) {
+        int vowels = 0;
+        for(int i = 0; i < str.length(); i++) { //in English y is not considered a vowel
+            if(str.charAt(i)=='a'||str.charAt(i)=='e'||str.charAt(i)=='i'
+                    ||str.charAt(i)=='o' ||str.charAt(i)=='u'||
+            str.charAt(i)=='A'||str.charAt(i)=='E'||str.charAt(i)=='I'
+                    ||str.charAt(i)=='O'||str.charAt(i)=='U') {
+                vowels++;
             }
+
         }
-        return true;
+        return vowels;
     }
 }
