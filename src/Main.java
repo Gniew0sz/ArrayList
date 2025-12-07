@@ -1,32 +1,39 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
+import java.util.HashSet;
 
 public class Main {
 
     void main(String[] args) {
         ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+
+        for (int i = 0; i < 50; i++) {
             list.add((int)(Math.random() * 100));
-            System.out.println(list.get(i));
         }
-        System.out.println("The second biggest number is " + findSecondLargest(list));
+        System.out.println("List 1: "+list);
 
-
+        System.out.println("The longest sequence is: " + findLongestSequence(list));
     }
-    int findSecondLargest(ArrayList<Integer> list) {
-        int biggest=list.get(0);
-        int secondBiggest=list.get(0);
-        for (int i = 1; i < list.size(); i++) {
-            if (list.get(i) > biggest) {
-                biggest = list.get(i);
+
+    public static ArrayList<Integer> findLongestSequence(ArrayList<Integer> nums) {
+        HashSet<Integer> set = new HashSet<>(nums);
+        ArrayList<Integer> longest = new ArrayList<>();
+
+        for (int n : set) {
+            if (!set.contains(n - 1)) {
+                ArrayList<Integer> current = new ArrayList<>();
+                int x = n;
+
+                while (set.contains(x)) {
+                    current.add(x);
+                    x++;
+                }
+
+                if (current.size() > longest.size()) {
+                    longest = current;
+                }
             }
         }
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) > secondBiggest&&list.get(i)!=biggest) {
-                secondBiggest = list.get(i);
-            }
-        }
-        return secondBiggest;
+
+        return longest;
     }
 }
