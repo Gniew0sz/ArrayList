@@ -1,39 +1,48 @@
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.LinkedList;
 
 public class Main {
 
     void main(String[] args) {
         ArrayList<Integer> list = new ArrayList<>();
+        LinkedList<Integer> linkedList = new LinkedList<>();
 
-        for (int i = 0; i < 50; i++) {
+
+        for (int i = 0; i < 10; i++) {
             list.add((int)(Math.random() * 100));
         }
         System.out.println("List 1: "+list);
 
-        System.out.println("The longest sequence is: " + findLongestSequence(list));
+        for (int i = 0; i < 13; i++) {
+            linkedList.add((int)(Math.random() * 100));
+        }
+        System.out.println("List 2: "+linkedList);
+        System.out.println("The merged lists are: " + mergeAndAlternate(list, linkedList));
     }
 
-    public static ArrayList<Integer> findLongestSequence(ArrayList<Integer> nums) {
-        HashSet<Integer> set = new HashSet<>(nums);
-        ArrayList<Integer> longest = new ArrayList<>();
+    ArrayList<Integer> mergeAndAlternate(ArrayList<Integer> list, LinkedList<Integer> linkedList) {
 
-        for (int n : set) {
-            if (!set.contains(n - 1)) {
-                ArrayList<Integer> current = new ArrayList<>();
-                int x = n;
+        ArrayList<Integer> result = new ArrayList<>();
+        ArrayList<Integer> list1;
+        LinkedList<Integer> list2;
 
-                while (set.contains(x)) {
-                    current.add(x);
-                    x++;
-                }
-
-                if (current.size() > longest.size()) {
-                    longest = current;
-                }
-            }
+        if (list.size() <= linkedList.size()) {
+            list1 = list;
+            list2 = linkedList;
+        } else {
+            list1 = new ArrayList<>(linkedList);
+            list2 = new LinkedList<>(list);
         }
 
-        return longest;
+        for (int i = 0; i < list1.size(); i++) {
+            result.add(list1.get(i));
+            result.add(list2.get(i));
+        }
+
+        for (int i = list1.size(); i < list2.size(); i++) {
+            result.add(list2.get(i));
+        }
+
+        return result;
     }
 }
